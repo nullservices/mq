@@ -1,0 +1,19 @@
+---
+ include/sleepy_discord/client.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/include/sleepy_discord/client.h b/include/sleepy_discord/client.h
+index 4537229..c8c8e9d 100644
+--- a/include/sleepy_discord/client.h
++++ b/include/sleepy_discord/client.h
+@@ -345,6 +345,7 @@ namespace SleepyDiscord {
+ 		const bool isReady() { return ready; }
+ 		const bool isQuiting() { return quiting; }
+ 		const bool isBot() { return bot; }
++		const bool isRateLimited() { return messagesRemaining <= 0 || request(Get, "gateway").statusCode == TOO_MANY_REQUESTS; }
+ 		const Snowflake<User> getID() { return userID; }
+ 		void setShardID(int _shardID, int _shardCount); //Note: must be called before run or reconnect
+ 		const int getShardID() { return shardID; }
+-- 
+2.19.2.windows.1
+
